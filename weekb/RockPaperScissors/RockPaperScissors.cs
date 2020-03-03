@@ -20,17 +20,17 @@ namespace RockPaperScissors
             if (choice == 'q')
                 return true;
             if(choice == 'r' && comp == 's')
-                winner(true);
+                winner(true, comp);
             else if (choice == 's' && comp == 'p')
-                winner(true);
+                winner(true, comp);
             else if (choice == 'p' && comp == 'r')
-                winner(true);
+                winner(true, comp);
             else if (choice == 's' && comp == 'r')
-                winner(false);
+                winner(false, comp);
             else if (choice == 'r' && comp == 'p')
-                winner(false);
+                winner(false, comp);
             else if (choice == 'p' && comp == 'r')
-                winner(false);
+                winner(false, comp);
             else if (choice != 'r' && choice != 'p' && choice != 's')
                 Console.WriteLine("Please choose either Rock, Paper or Scisor.");
             else
@@ -42,7 +42,7 @@ namespace RockPaperScissors
 
         }
 
-        private void winner(bool win)
+        private void winner(bool win, char compChoice)
         {
             if(win)
             {
@@ -55,6 +55,13 @@ namespace RockPaperScissors
                 Console.WriteLine("You lost!");
                 compWins++;
             }
+            if (compChoice == 'r')
+                Console.WriteLine("Computer choose rock.");
+            else if (compChoice == 's')
+                Console.WriteLine("Computer choose scissors");
+            else if (compChoice == 'p')
+                Console.WriteLine("Computer choose paper");
+            
         }
         private char CompChoice() 
         {
