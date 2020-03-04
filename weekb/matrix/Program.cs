@@ -20,6 +20,7 @@ namespace matrix
             test2 = 3 * addMatrix; 
             Console.WriteLine(test2.toString());
             Matrix multMatrix = addMatrix * 3;
+            Console.WriteLine(multMatrix.toString());
         }
     }
 }

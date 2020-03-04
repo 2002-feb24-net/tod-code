@@ -12,19 +12,35 @@ namespace matrix
     public class Matrix
     {
         public int size;
+
+        public int col;
+
+        public int row;
         public int[,] matrixArray;
         public Matrix(int n)
         {
             size = n;
+            col = n;
+            row = n;
             matrixArray = new int[n,n];
+        }
+
+        public Matrix(int column, int rows)
+        {
+            size = column;
+            col = column;
+            row = rows;
+            matrixArray = new int[col,row];
         }
 
         public Matrix(int n, int[,] fill)
         {
             size = n;
-            matrixArray = new int[n,n];
-            for (int i = 0; i < n; i++)
-                for(int j = 0; j < n; j++)
+            col = n;
+            row = n;
+            matrixArray = new int[col,row];
+            for (int i = 0; i < col; i++)
+                for(int j = 0; j < row; j++)
             {
                 matrixArray[i,j] = fill[i,j];
             }
@@ -44,26 +60,26 @@ namespace matrix
             if(a.size != b.size)
                 return a;
             Matrix addMatrix = new Matrix(a.size);
-            for(int i=0; i < a.size; i++)
-                for(int j=0; j < a.size; j++)
+            for(int i=0; i < a.col; i++)
+                for(int j=0; j < a.row; j++)
                      addMatrix.SetElement(i,j,a.GetElement(i,j)+b.GetElement(i,j));
             return addMatrix;
         }
 
         public static Matrix operator* (int n, Matrix a)
         {
-            Matrix multMatrix = new Matrix(a.size);
-            for(int i=0; i < a.size; i++)
-                for(int j=0; j < a.size; j++)
+            Matrix multMatrix = new Matrix(a.col, a.row);
+            for(int i=0; i < a.col; i++)
+                for(int j=0; j < a.row; j++)
                     multMatrix.SetElement(i,j,a.GetElement(i,j)*n);
             return multMatrix;
         }
 
         public static Matrix operator* (Matrix a, int n)
         {
-            Matrix multMatrix = new Matrix(a.size);
-            for(int i=0; i < a.size; i++)
-                for(int j=0; j < a.size; j++)
+            Matrix multMatrix = new Matrix(a.col, a.row);
+            for(int i=0; i < a.col; i++)
+                for(int j=0; j < a.row; j++)
                     multMatrix.SetElement(i,j,a.GetElement(i,j)*n);
             return multMatrix;
         }
@@ -71,12 +87,13 @@ namespace matrix
         public string toString()
         {
             string strMatrix = "";
-            for(int i = 0; i < size; i++)
-                for(int j = 0; j < size; j++)
+            for(int i = 0; i < col; i++)
+            {
+                strMatrix = strMatrix + "{" + matrixArray[i,0]; 
+                for(int j = 1; j < row; j++)
                     strMatrix = strMatrix + "," + matrixArray[i,j];
-                
-            
-
+                strMatrix = strMatrix + "}" + "\n";
+            }
             return strMatrix;
         }
     }
