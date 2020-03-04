@@ -84,15 +84,20 @@ namespace matrix
             return multMatrix;
         }
 
-        public string toString()
+/*        public Matrix transpose()
+        {
+            Matrix transMatrix = new Matrix(n, matrixArray);
+        }
+*/
+        public override string ToString()
         {
             string strMatrix = "";
             for(int i = 0; i < col; i++)
             {
-                strMatrix = strMatrix + "{" + matrixArray[i,0]; 
+                strMatrix = strMatrix + "|" + matrixArray[i,0]; 
                 for(int j = 1; j < row; j++)
                     strMatrix = strMatrix + "," + matrixArray[i,j];
-                strMatrix = strMatrix + "}" + "\n";
+                strMatrix = strMatrix + "|" + "\n";
             }
             return strMatrix;
         }

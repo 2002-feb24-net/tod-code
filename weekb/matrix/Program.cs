@@ -14,13 +14,13 @@ namespace matrix
             };
             Matrix test = new Matrix(2, index);
             Matrix test2 = new Matrix(2, index);
-            Console.WriteLine(test.toString());
+            Console.WriteLine(test.ToString());
             Matrix addMatrix = test + test2;
-            Console.WriteLine(addMatrix.toString());
+            Console.WriteLine(addMatrix.ToString());
             test2 = 3 * addMatrix; 
-            Console.WriteLine(test2.toString());
+            Console.WriteLine(test2.ToString());
             Matrix multMatrix = addMatrix * 3;
-            Console.WriteLine(multMatrix.toString());
+            Console.WriteLine(multMatrix.ToString());
         }
     }
 }
