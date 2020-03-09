@@ -17,21 +17,21 @@ namespace PersonList
             if(FindDuplicates(personList))
                 Console.WriteLine("Duplicates found!");
 
-            //personList = InsertionSort(personList);
+            personList = InsertionSort(personList);
             
-            //DisplayList(InsertionSort);
+            DisplayList(personList);
 
         }
-/*
+
         static List<Person> InsertionSort(List<Person> unsorted)
         {
             Person temp = unsorted[0];
             int sortIndex = 1;
-            for(int i = 0; i < unsorted.Count-1; i++)
+            for(int i = 0; i < unsorted.Count; i++)
             {
                 for(int j = 0; j < sortIndex; j++)
                 {
-                    if(unsorted[j].ToString() < unsorted[i].ToString())
+                    if(string.Compare(unsorted[j].ToString(), unsorted[i].ToString()) > 0)
                     {
                         temp = unsorted[i];
                         unsorted[i] = unsorted[j];
@@ -40,11 +40,12 @@ namespace PersonList
                     
                 
                 }
+                sortIndex++;
             }
             return unsorted;
                 
         }
-*/
+
         static bool FindDuplicates(List<Person> personList)
         {
             for(int i = 0; i < personList.Count-1; i++)
