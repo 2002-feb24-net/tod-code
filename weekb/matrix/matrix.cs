@@ -84,11 +84,20 @@ namespace matrix
             return multMatrix;
         }
 
-/*        public Matrix transpose()
+        public static Matrix operator- (Matrix a)
         {
-            Matrix transMatrix = new Matrix(n, matrixArray);
+            return -1 * a;
         }
-*/
+
+        public Matrix transposition()
+        {
+            int[,] transpose = new int[row, col];
+                for(int i = 0; i < col;i++)
+                    for(int j = 0; j < row; j++)
+                        transpose[j,i] = matrixArray[i,j];
+            matrixArray = transpose;
+            return this;
+        }
         public override string ToString()
         {
             string strMatrix = "";

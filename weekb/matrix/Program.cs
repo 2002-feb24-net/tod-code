@@ -10,7 +10,7 @@ namespace matrix
             int[,] index = new int[2,2]
             {
                 {2,3},
-                {3,4}
+                {5,4}
             };
             Matrix test = new Matrix(2, index);
             Matrix test2 = new Matrix(2, index);
@@ -19,8 +19,14 @@ namespace matrix
             Console.WriteLine(addMatrix.ToString());
             test2 = 3 * addMatrix; 
             Console.WriteLine(test2.ToString());
-            Matrix multMatrix = addMatrix * 3;
+            Matrix multMatrix = addMatrix * 5;
             Console.WriteLine(multMatrix.ToString());
+            multMatrix = -multMatrix;
+            Console.WriteLine(multMatrix.ToString());
+            multMatrix.transposition();
+            Console.WriteLine(multMatrix.ToString());
+
+            
         }
     }
 }
