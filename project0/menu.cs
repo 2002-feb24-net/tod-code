@@ -6,6 +6,7 @@ namespace restaurant
     class Menu
     {
         public List<MenuItem> menu = new List<MenuItem>();
+        
     }
 }
 

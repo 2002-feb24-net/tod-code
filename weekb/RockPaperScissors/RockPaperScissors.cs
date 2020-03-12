@@ -54,7 +54,7 @@ namespace RockPaperScissors
             Console.WriteLine("Rock Paper Scissors says shoot (press R,P, S):");
             char choice = Console.ReadLine()[0];
             choice = char.ToLower(choice);
-            char comp = CompChoice(); 
+            char comp = CompRandom.DecideMove(); 
             if (choice == 'q')
                 return true;
             Score roundScore = new Score();
@@ -96,18 +96,7 @@ namespace RockPaperScissors
                 Console.WriteLine("Computer choose paper");
             
         }
-        private char CompChoice() 
-        {
-            Random rnd = new Random();
-            int rndAnswer = rnd.Next(2);
-            if (rndAnswer == 0)
-                return 'r';
-            if (rndAnswer == 1)
-                return 'p';
-            if (rndAnswer == 2)
-                return 's';
-            return 'r';            
-        } 
+        
         public void PrintSummary()
         {
             Console.WriteLine("Summary:");
