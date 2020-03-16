@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace project0
+namespace restaurant
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MenuConsole.AddMenuItemConsole();
         }
     }
 }

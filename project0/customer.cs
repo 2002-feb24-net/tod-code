@@ -1,3 +1,7 @@
+//holds customer information
+//todo: partial information, multiple constructors
+//getters, setters for information
+
 using System;
 
 namespace restaurant
