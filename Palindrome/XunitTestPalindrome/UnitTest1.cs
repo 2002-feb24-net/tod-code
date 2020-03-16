@@ -38,5 +38,17 @@ namespace XUnitTestPalindrome
             Assert.True(test7);
         }
 
+        [Fact]
+        public void test2()
+        {
+            Palindrome pal = new Palindrome("doggone");
+            pal.input = "refer";
+            bool test1 = pal.IsPalindrome();
+            Assert.True(test1);
+            Assert.Equal("refer",pal.input);
+            Palindrome pal2 = new Palindrome("test");
+            Assert.Equal("test", pal.input);
+        }
+
     }
 }
