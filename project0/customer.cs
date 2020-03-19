@@ -8,22 +8,22 @@ namespace restaurant
 {
     public class Customer
     {
-        private string firstName;
-        private string lastName;
+        private string first;
+        private string last;
 
-        private string address;
+        private string street;
 
-        private int zipcode;
+        private int zip;
 
-        private int phoneNumber;
+        private int phone;
 
         public Customer(string first, string last, string street, int phone, int zip)
         {
-            firstName = first;
-            lastName = last;
-            address = street;
-            zipcode = zip;
-            phoneNumber = phone;
+            this.first = first;
+            this.last = last;
+            this.street = street;
+            this.zip = zip;
+            this.phone = phone;
 
         }
 
