@@ -6,7 +6,8 @@ namespace restaurant
     {
         static void Main(string[] args)
         {
-            MenuConsole.AddMenuItemConsole();
+            var startConsole = new MenuConsole();
+            startConsole.MainMenu();
         }
     }
 }

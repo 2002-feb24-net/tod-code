@@ -15,6 +15,19 @@ namespace restaurant
             MenuItem entry = new MenuItem(name, cost, cat);
             displayMenu.Add(entry);
 
+            
+
+        }
+
+        public override string ToString()
+        {
+            string menuString = "";
+            for(int i = 0; i < displayMenu.Count; i++)
+            {
+                menuString = displayMenu[i].ToString();
+            }
+
+            return menuString;
         }
 
         
