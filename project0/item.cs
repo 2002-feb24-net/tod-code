@@ -23,7 +23,7 @@ namespace restaurant
 
         public override string ToString()
         {
-            return item + ":" + price + ":" + category;
+            return item + "-" + price + "-" + category;
 
         }
     }

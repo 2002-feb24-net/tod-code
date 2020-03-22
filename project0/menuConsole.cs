@@ -27,7 +27,9 @@ namespace restaurant
                 if(command == 'a')
                     AddMenuItemConsole();
                 else if (command == 'm')
-                    Console.WriteLine(storeMenu.ToString()); 
+                {
+                    Console.WriteLine(storeMenu.ToString());
+                } 
             }while(command != 'q'); 
 
         }

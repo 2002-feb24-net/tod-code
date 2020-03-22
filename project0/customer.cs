@@ -8,24 +8,26 @@ namespace restaurant
 {
     public class Customer
     {
-        private string first;
-        private string last;
+        public string first{get; set;}
+        public string last{get; set;}
 
-        private string street;
+        public string street{get; set;}
 
-        private int zip;
+        public int storeNum{get; set;}
 
-        private int phone;
+        public int phone{get; set;}
 
-        public Customer(string first, string last, string street, int phone, int zip)
+        public Customer(string first, string last, string street, int phone, int storeNum)
         {
             this.first = first;
             this.last = last;
             this.street = street;
-            this.zip = zip;
+            this.storeNum = storeNum;
             this.phone = phone;
 
         }
+
+        
 
 
 
