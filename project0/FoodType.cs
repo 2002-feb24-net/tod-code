@@ -8,8 +8,8 @@ namespace restaurant
             beef,
             pork,
             chicken,
-            drinks,
-            desserts
+            drink,
+            dessert
         }
 
 

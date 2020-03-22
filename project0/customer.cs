@@ -4,27 +4,32 @@
 
 using System;
 
+
 namespace restaurant
 {
     public class Customer
     {
-        public string first{get; set;}
-        public string last{get; set;}
 
-        public string street{get; set;}
+        public string name{get; set;}
+
+        public string address{get; set;}
 
         public int storeNum{get; set;}
 
-        public int phone{get; set;}
+        public string phone{get; set;} //primary key
 
-        public Customer(string first, string last, string street, int phone, int storeNum)
+        public Customer(string name, string address, string phone, int storeNum)
         {
-            this.first = first;
-            this.last = last;
-            this.street = street;
+            this.name = name;
+            this.address = address;
             this.storeNum = storeNum;
             this.phone = phone;
 
+        }
+
+        public override string ToString()
+        {
+            return name + ":" + address + ":" + phone + ":" + storeNum;
         }
 
         

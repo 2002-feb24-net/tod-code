@@ -24,7 +24,7 @@ namespace restaurant
             string menuString = "";
             for(int i = 0; i < displayMenu.Count; i++)
             {
-                menuString = menuString + displayMenu[i].ToString() + "\n";
+                menuString =  menuString + i + ". " + displayMenu[i].ToString() + "\n";
             }
 
             return menuString;
