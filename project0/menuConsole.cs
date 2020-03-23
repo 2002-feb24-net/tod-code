@@ -12,12 +12,14 @@ namespace restaurant
         public Menu storeMenu {get; set;}
         public CustomerList storeCustomers {get; set;}
         private int storeNum;
-        
+        public Customer orderer {get; set;}
+
         public MenuConsole()
         {
             storeMenu = new Menu();
             storeCustomers = new CustomerList();
             storeNum = 1;  //need to get this value
+            orderer = null;
         }
 
         public void MainMenu()
@@ -29,6 +31,7 @@ namespace restaurant
                 Console.WriteLine("m: Display Entire Menu");
                 Console.WriteLine("c: Add a New Customer");
                 Console.WriteLine("p: Print Customer List");
+                Console.WriteLine("o: Order for Customer");
                 Console.WriteLine("q: Quit Program");
                 Console.WriteLine("Please Enter Command:");
                 command = Console.ReadLine()[0];   //todo add try to catch error
@@ -47,7 +50,38 @@ namespace restaurant
                 {
                     Console.WriteLine(storeCustomers.ToString());
                 }
+                else if (command == 'o')
+                {
+                    OrderforCustomer();
+                }
             }while(command != 'q'); 
+        }
+
+        public void OrderforCustomer()
+        {
+            Order customerOrder;     
+            if(orderer != null)
+            {
+                customerOrder = new Order(orderer);
+                Console.WriteLine(storeMenu.ToString());
+                int itemNum = 0;
+                do
+                {
+                    Console.WriteLine("Choose Menu Item by Number, -1 to quit");
+                    try
+                    {   
+                        itemNum = int.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Not a number. Please try again");
+                    }
+                    if(itemNum > 0 && itemNum < storeMenu.Count()+1)
+                        customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum-1));
+                }while(itemNum!=-1);
+            }
+        
+
         }
 
         public void AddCustomerConsole()
@@ -60,6 +94,8 @@ namespace restaurant
             string phone = Console.ReadLine();
 
             storeCustomers.AddCustomer(name,address,phone,storeNum);
+            orderer = new Customer(name, address, phone, storeNum);
+            
         }
 
 
@@ -96,7 +132,7 @@ namespace restaurant
                 }
                 catch
                 {
-                    Console.WriteLine("Please Enter Correct Item Type");
+                    Console.WriteLine("Please enter correct item type");
                 }
             } while (tryFood);
 

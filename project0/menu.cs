@@ -13,10 +13,7 @@ namespace restaurant
         public void AddItem(string name, double cost, FoodType cat)
         {
             MenuItem entry = new MenuItem(name, cost, cat);
-            displayMenu.Add(entry);
-
-            
-
+            displayMenu.Add(entry);  
         }
 
         public override string ToString()
@@ -24,11 +21,23 @@ namespace restaurant
             string menuString = "";
             for(int i = 0; i < displayMenu.Count; i++)
             {
-                menuString =  menuString + i + ". " + displayMenu[i].ToString() + "\n";
+                menuString =  menuString + (i+1) + ". " + displayMenu[i].ToString() + "\n";
             }
-
             return menuString;
         }
+
+        public MenuItem GetItemFromMenu(int itemNum)
+        {
+            return displayMenu[itemNum];
+        }
+
+        public int Count()
+        {
+            return displayMenu.Count;
+        }
+    
+
+
 
         
         

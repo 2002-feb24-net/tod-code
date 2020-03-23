@@ -14,6 +14,16 @@ namespace restaurant
 
         }
 
+        public int Count()
+        {
+            return patronList.Count;
+        }
+
+        public Customer ReturnCustomer(int customerIndex)  //rewrite as overloaded operator index
+        {
+            return patronList[customerIndex];   
+        }
+
         public override string ToString()
         {
             string customerString = "";

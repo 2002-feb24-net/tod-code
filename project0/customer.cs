@@ -9,13 +9,9 @@ namespace restaurant
 {
     public class Customer
     {
-
         public string name{get; set;}
-
         public string address{get; set;}
-
         public int storeNum{get; set;}
-
         public string phone{get; set;} //primary key
 
         public Customer(string name, string address, string phone, int storeNum)
@@ -25,6 +21,14 @@ namespace restaurant
             this.storeNum = storeNum;
             this.phone = phone;
 
+        }
+
+        public Customer(Customer copyC)
+        {
+            this.name = copyC.name;
+            this.address = copyC.address;
+            this.storeNum = copyC.storeNum;
+            this.phone = copyC.phone;
         }
 
         public override string ToString()
