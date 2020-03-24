@@ -9,7 +9,7 @@ namespace project0.logic
         public string name { get; set; }
         public string address { get; set; }
         public int storeNum { get; set; }
-        public string phone { get; set; } //primary key
+        public string phone { get; set; } 
 
         public Customer(string name, string address, string phone, int storeNum)
         {

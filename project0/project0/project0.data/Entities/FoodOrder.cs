@@ -14,7 +14,7 @@ namespace project0.data.Entities
         public string Name { get; set; }
         public int Ordernum { get; set; }
 
-        public virtual Customer NameNavigation { get; set; }
+        public virtual Customerdb NameNavigation { get; set; }
         public virtual ICollection<OrderItem> OrderItem { get; set; }
         public virtual ICollection<OrderItem1> OrderItem1 { get; set; }
     }

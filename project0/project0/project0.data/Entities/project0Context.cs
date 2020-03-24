@@ -15,7 +15,7 @@ namespace project0.data.Entities
         {
         }
 
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Customerdb> Customerdb { get; set; }
         public virtual DbSet<Food> Food { get; set; }
         public virtual DbSet<FoodOrder> FoodOrder { get; set; }
         public virtual DbSet<OrderItem> OrderItem { get; set; }
@@ -31,7 +31,7 @@ namespace project0.data.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>(entity =>
+            modelBuilder.Entity<Customerdb>(entity =>
             {
                 entity.HasKey(e => e.Name)
                     .HasName("PK__customer__72E12F1A1CFBBD6E");

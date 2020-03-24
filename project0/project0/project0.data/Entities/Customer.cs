@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace project0.data.Entities
 {
-    public partial class Customer
+    public partial class Customerdb
     {
-        public Customer()
+        public Customerdb()
         {
             FoodOrder = new HashSet<FoodOrder>();
         }

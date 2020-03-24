@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using project0.logic;
+using project0.data.Entities;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore;
 
 namespace project0
 {
@@ -9,6 +14,7 @@ namespace project0
     {
         public Menu storeMenu { get; set; }
         public CustomerList storeCustomers { get; set; }
+
         private int storeNum;
         public Customer orderer { get; set; }
 
@@ -135,6 +141,13 @@ namespace project0
             } while (tryFood);
 
             storeMenu.AddItem(name, price, food);
+
+            using (var context = new project0Context())
+            {
+                var menuList = context.Food.ToList();
+                if (menuList.Count > 0)
+                    Console.WriteLine(menuList[0].Price);
+            }
         }
 
     }

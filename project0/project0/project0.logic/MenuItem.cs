@@ -1,4 +1,8 @@
 ﻿using System;
+using project0;
+using System.Linq;
+
+
 
 namespace project0.logic
 {
@@ -8,11 +12,13 @@ namespace project0.logic
         public double price { get; set; }
         public FoodType category { get; set; }
 
+
         public MenuItem(string name, double cost, FoodType cat)
         {
             item = name;
             price = cost;
             category = cat;
+
         }
 
         public override string ToString()
