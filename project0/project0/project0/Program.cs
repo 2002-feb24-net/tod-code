@@ -1,5 +1,5 @@
 ﻿using System;
-
+using project0.data;
 
 namespace project0
 {
@@ -7,7 +7,8 @@ namespace project0
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var startConsole = new MenuConsole();
+            startConsole.MainMenu();
         }
     }
 }
