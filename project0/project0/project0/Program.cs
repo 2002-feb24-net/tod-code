@@ -9,7 +9,7 @@ namespace project0
         static void Main(string[] args)
         {
             var startConsole = new MenuConsole();
-            startConsole.MainMenu();
+            startConsole.IntroMenu();
         }
     }
 }

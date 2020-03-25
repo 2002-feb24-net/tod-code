@@ -20,11 +20,34 @@ namespace project0.logic
             menuOrder = new List<MenuItem>();
         }
 
+        public Order(Customer orderer, DateTime localDate, List<MenuItem> menuOrder)
+        {
+            this.orderer = orderer;
+            this.localDate = localDate;
+            this.menuOrder = menuOrder;
+
+        }
+
         public void AddItem(MenuItem Item)  //candidate for interface
         {
             menuOrder.Add(Item);
         }
 
+        public string DisplayOrder()
+        {
+            string display = "";
+            for (int i = 0; i < menuOrder.Count; i++)
+                display = display + (i + 1) + ". " + menuOrder[i].price + " - " + menuOrder[i].item + "\n";
+            return display;
+        }
+
+        public double CalculateTotal()
+        {
+            double total = 0;
+            for (int i = 0; i < menuOrder.Count; i++)
+                total += menuOrder[i].price;
+            return total;
+        }
     }
 
 }

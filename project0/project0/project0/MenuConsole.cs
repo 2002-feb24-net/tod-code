@@ -14,8 +14,9 @@ namespace project0
     {
         public Menu storeMenu { get; set; }
         public CustomerList storeCustomers { get; set; }
+        public OrderList receipts { get; set; }
 
-        private int storeNum;
+        private readonly int? storeNum;
         public Customer orderer { get; set; }
 
         public MenuConsole()
@@ -24,10 +25,20 @@ namespace project0
             storeCustomers = new CustomerList();
             storeNum = 1;  //need to get this value
             orderer = null;
+            PopulateFromDB.PopulateMenu(storeMenu);
+            PopulateFromDB.PopulateCustomerList(storeCustomers);
         }
+        public void IntroMenu()
+        {
+            Console.WriteLine("Welcome to Zhou Mama's (周妈妈) Chinese Restaurant");
+            Console.WriteLine("Please Enter Location:");
+            MainMenu();
+        }
+
 
         public void MainMenu()
         {
+            
             char command;
             do
             {
@@ -82,6 +93,12 @@ namespace project0
                     }
                     if (itemNum > 0 && itemNum < storeMenu.Count() + 1)
                         customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
+                    else
+                        Console.WriteLine("Not an item on the Menu");
+
+                    Console.WriteLine("Current Order: ");
+                    Console.WriteLine(customerOrder.DisplayOrder());
+                    Console.WriteLine(customerOrder.CalculateTotal() + " total");
                 } while (itemNum != -1);
             }
 
@@ -139,18 +156,8 @@ namespace project0
                     Console.WriteLine("Please enter correct item type");
                 }
             } while (tryFood);
-
             storeMenu.AddItem(name, price, food);
-
-            using (var context = new project0Context())
-            {
-                var menuList = context.Food.ToList();
-                if (menuList.Count > 0)
-                    Console.WriteLine(menuList[0].Price);
-            }
         }
 
     }
-
-
 }

@@ -1,0 +1,21 @@
+h4 {color: blue}
+h3 {color: orange}
+
+a.highlight:hover {color: yellow}
+
+
+
+body {
+  background-color: lightblue;
+}
+
+.right
+{
+  position: absolute;
+  right: 0px;
+  padding: 20px
+}
+
+a:visited {
+  color: pink;
+}

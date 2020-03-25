@@ -25,6 +25,7 @@ namespace project0.logic
         {
             return item + "-" + price + "-" + category;
 
+
         }
     }
 }

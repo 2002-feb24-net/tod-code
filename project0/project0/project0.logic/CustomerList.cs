@@ -9,7 +9,7 @@ namespace project0.logic
         {
             public List<Customer> patronList = new List<Customer>();
 
-            public void AddCustomer(string name, string address, string phone, int storeNum)
+            public void AddCustomer(string name, string address, string phone, int? storeNum)
             {
                 var addCustomer = new Customer(name, address, phone, storeNum);
                 patronList.Add(addCustomer);
