@@ -142,7 +142,7 @@ namespace Project0
                 int itemNum = 0;
                 do
                 {
-                Console.Clear();
+                
                 Console.WriteLine(storeMenu.ToString());
                 Console.WriteLine(orderer.name);
                 Console.WriteLine("Choose Menu Item by Number, -1 to quit");
@@ -154,7 +154,8 @@ namespace Project0
                     {
                         Console.WriteLine("Not a number. Please try again");
                     }
-                    if (itemNum > 0 && itemNum < storeMenu.Count() + 1)
+                Console.Clear();
+                if (itemNum > 0 && itemNum < storeMenu.Count() + 1)
                         customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
                     else
                         Console.WriteLine("Not an item on the Menu");
