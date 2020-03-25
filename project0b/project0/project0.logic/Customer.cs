@@ -4,14 +4,14 @@ using System.Text;
 
 namespace project0.logic
 {
-    public class Customer
+    public class Customers
     {
         public string name { get; set; }
         public string address { get; set; }
         public int? storeNum { get; set; }
         public string phone { get; set; } 
 
-        public Customer(string name, string address, string phone, int? storeNum)
+        public Customers(string name, string address, string phone, int? storeNum)
         {
             this.name = name;
             this.address = address;
@@ -20,7 +20,7 @@ namespace project0.logic
 
         }
 
-        public Customer(Customer copyC)
+        public Customers(Customers copyC)
         {
             this.name = copyC.name;
             this.address = copyC.address;

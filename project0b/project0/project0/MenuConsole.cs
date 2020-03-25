@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Project0.logic;
-using Project0.data.Entities;
+using project0.logic;
+using project0.data.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 
-namespace Project0
+namespace project0
 {
     public class MenuConsole
     {
@@ -24,12 +24,12 @@ namespace Project0
         public MenuConsole()
         {
             storeMenu = new Menu();
-            storeCustomers = new CustomerList();
+            storeCustomers = new CustomerList(); 
             orderer = null;
             PopulateFromDB.PopulateMenu(storeMenu);
             PopulateFromDB.PopulateCustomerList(storeCustomers);
             locList = PopulateFromDB.PopulateLocations();
-
+            
         }
         public void IntroMenu()
         {
@@ -58,12 +58,12 @@ namespace Project0
                     Console.WriteLine("Please Enter a valid number");
                     System.Threading.Thread.Sleep(3200);
                 }
-            } while (!validLoc);
+            }while(!validLoc);
             MainMenu();
         }
         public void MainMenu()
         {
-
+            
             char command;
             do
             {
@@ -145,7 +145,7 @@ namespace Project0
             string phone = Console.ReadLine();
 
             storeCustomers.AddCustomer(name, address, phone, storeNum);
-            orderer = new Customers(name, address, phone, storeNum);
+            orderer = new Customer(name, address, phone, storeNum);
 
         }
         public void AddMenuItemConsole()

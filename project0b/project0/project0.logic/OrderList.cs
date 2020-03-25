@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project0.logic
+namespace project0.logic
 {
     public class OrderList
     {

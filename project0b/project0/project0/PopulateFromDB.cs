@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Project0.logic;
-using Project0.data.Entities;
+using project0.logic;
+using project0.data.Entities;
 using System.Linq;
 
 
-namespace Project0
+namespace project0
 {
     public static class PopulateFromDB
     {
@@ -14,7 +14,7 @@ namespace Project0
         public static List<Locations> PopulateLocations()
         {
             var returnList = new List<Locations>();
-            using (var context = new restaurantContext())
+            using (var context = new project0Context())
             {
                 var locationList = context.Location.ToList();
                 for (int i = 0; i < locationList.Count; i++)
@@ -22,7 +22,7 @@ namespace Project0
                     var locale = new Locations(locationList[i].Name, locationList[i].Storenum);
                     returnList.Add(locale);
 
-                }
+                }    
             }
             return returnList;
         }
@@ -36,16 +36,16 @@ namespace Project0
                 Foodtype = addItem.category.ToString()
             };
 
-            using (var context = new restaurantContext())
+            using (var context = new project0Context())
             {
-                context.Food.Add(newFood);
-                context.SaveChanges();
+                context.Food.Add(newFood); 
+                context.SaveChanges(); 
             }
 
         }
         public static bool PopulateMenu(Menu popMenu)
         {
-            using (var context = new restaurantContext())
+            using (var context = new project0Context())
             {
                 var menuList = context.Food.ToList();
                 for (int i = 0; i < menuList.Count; i++)
@@ -67,7 +67,7 @@ namespace Project0
 
         public static void PopulateCustomerList(CustomerList popCustomer)
         {
-            using (var context = new restaurantContext())
+            using (var context = new project0Context())
             {
                 var customList = context.Customer.ToList();
                 for (int i = 0; i < customList.Count; i++)
@@ -78,11 +78,11 @@ namespace Project0
 
         public static void PopulateOrderList(OrderList popReceipts, CustomerList popCustomers, Menu popMenu)
         {
-            using (var context = new restaurantContext())
+            using (var context = new project0Context())
             {
                 //var customerList = context.
             }
         }
     }
-
+    
 }

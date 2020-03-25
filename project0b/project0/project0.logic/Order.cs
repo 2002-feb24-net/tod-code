@@ -4,23 +4,23 @@ using System.Text;
 using System.Globalization;
 
 
-namespace Project0.logic
+namespace project0.logic
 {
     public class Order
     {
         public DateTime localDate { get; set; }
-        public Customers orderer { get; set; }
+        public Customer orderer { get; set; }
         public List<MenuItem> menuOrder { get; set; }
 
 
-        public Order(Customers orderer)
+        public Order(Customer orderer)
         {
             this.orderer = orderer;
             localDate = DateTime.Now;
             menuOrder = new List<MenuItem>();
         }
 
-        public Order(Customers orderer, DateTime localDate, List<MenuItem> menuOrder)
+        public Order(Customer orderer, DateTime localDate, List<MenuItem> menuOrder)
         {
             this.orderer = orderer;
             this.localDate = localDate;
