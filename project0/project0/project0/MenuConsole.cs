@@ -81,8 +81,15 @@ namespace Project0
                 Console.WriteLine("i: Go back to Location Menu");
                 Console.WriteLine("q: Quit Program");
                 Console.WriteLine("Please Enter Command:");
-                command = Console.ReadLine()[0];   //todo add try to catch error
-
+                try
+                {
+                    command = Console.ReadLine()[0];
+                }
+                catch
+                {
+                    Console.WriteLine("Please Enter valid input");
+                    command = 'f';
+                }
                 if (command == 'a')
                     AddMenuItemConsole();
                 else if (command == 'm')
