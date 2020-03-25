@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace project0.logic
+namespace Project0.logic
 {
     public class Customers
     {
         public string name { get; set; }
         public string address { get; set; }
-        public int? storeNum { get; set; }
+        public int storeNum { get; set; }
         public string phone { get; set; } 
 
         public Customers(string name, string address, string phone, int? storeNum)
@@ -30,7 +30,7 @@ namespace project0.logic
 
         public override string ToString()
         {
-            return name + ":" + address + ":" + phone + ":" + storeNum;
+            return name + ":" + address + ":" + phone;
         }
 
 

@@ -27,6 +27,23 @@ namespace Project0
             return returnList;
         }
 
+        public static void AddCustomer(Customers patron)
+        {
+            var newCustomer = new Customer
+            {
+                Name = patron.name,
+                Address = patron.address,
+                Storenum = patron.storeNum,
+                Phone = patron.phone
+            };
+            using (var context = new restaurantContext())
+            {
+                context.Customer.Add(newCustomer);
+                context.SaveChanges();
+            }
+
+        }
+
         public static void AddMenuItem(MenuItem addItem)
         {
             var newFood = new Food

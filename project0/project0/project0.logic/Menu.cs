@@ -17,9 +17,65 @@ namespace Project0.logic
         public override string ToString()
         {
             string menuString = "";
+            int menuNumber = 0;
+            menuString += "Appetizers: \n";
             for (int i = 0; i < displayMenu.Count; i++)
             {
-                menuString = menuString + (i + 1) + ". " + displayMenu[i].ToString() + "\n";
+                
+                if ((int)displayMenu[i].category == 0)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
+            }
+            menuString += "Beef: \n";
+            for (int i = 0; i < displayMenu.Count; i++)
+            {
+                
+                if ((int)displayMenu[i].category == 1)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
+            }
+            menuString += "Pork: \n";
+            for (int i = 0; i < displayMenu.Count; i++)
+            {
+                if ((int)displayMenu[i].category == 2)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
+            }
+            menuString += "Chicken: \n";
+            for (int i = 0; i < displayMenu.Count; i++)
+            {
+                
+                if ((int)displayMenu[i].category == 3)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
+            }
+            menuString += "Drinks: \n";
+            for (int i = 0; i < displayMenu.Count; i++)
+            {
+                
+                if ((int)displayMenu[i].category == 4)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
+            }
+
+            menuString += "Desserts: \n";
+            for (int i = 0; i < displayMenu.Count; i++)
+            {
+                if ((int)displayMenu[i].category == 5)
+                {
+                    menuNumber++;
+                    menuString = menuString + (menuNumber) + ". " + displayMenu[i].ToString() + "\n";
+                }
             }
             return menuString;
         }

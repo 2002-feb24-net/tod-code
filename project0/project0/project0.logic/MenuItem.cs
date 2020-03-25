@@ -24,7 +24,7 @@ namespace Project0.logic
 
         public override string ToString()
         {
-            return item + "-" + price + "-" + category;
+            return item + "-" + price;
 
 
         }

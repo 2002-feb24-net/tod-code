@@ -4,7 +4,7 @@ using System.Text;
 using System.Globalization;
 
 
-namespace project0.logic
+namespace Project0.logic
 {
     public class Order
     {

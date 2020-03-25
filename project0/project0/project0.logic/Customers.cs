@@ -30,7 +30,7 @@ namespace Project0.logic
 
         public override string ToString()
         {
-            return name + ":" + address + ":" + phone + ":" + storeNum;
+            return name + ":" + address + ":" + phone;
         }
     }
 }

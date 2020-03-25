@@ -33,11 +33,12 @@ namespace Project0
         }
         public void IntroMenu()
         {
-            Console.OutputEncoding = Encoding.UTF8;
+            
             bool validLoc = false;
             do
             {
                 Console.Clear();
+                Console.OutputEncoding = Encoding.UTF8;
                 Console.WriteLine("Welcome to Zhou Mama's (周妈妈) Chinese Restaurant");
                 for (int i = 0; i < locList.Count; i++)
                     Console.WriteLine($"{locList[i].locNum}. {locList[i].cityState}");
@@ -45,7 +46,8 @@ namespace Project0
                 try
                 {
                     storeNum = int.Parse(Console.ReadLine());
-                    if (storeNum < locList.Count + 1 && storeNum > 0)
+                    storeNum--;
+                    if (storeNum < locList.Count && storeNum > -1)
                         validLoc = true;
                     else
                     {
@@ -90,7 +92,7 @@ namespace Project0
                 }
                 else if (command == 'p')
                 {
-                    Console.WriteLine(storeCustomers.ToString());
+                    Console.WriteLine(storeCustomers.StoreCustomerSting(storeNum));
                 }
                 else if (command == 'o')
                 {
@@ -107,14 +109,33 @@ namespace Project0
         public void OrderforCustomer()
         {
             Order customerOrder;
-            if (orderer != null)
+            int customNumber;
+            do 
             {
+                Console.Clear();
+                Console.WriteLine("Search for customer");
+                string search = Console.ReadLine();
+                Console.WriteLine(storeCustomers.SearchString(search));
+                Console.WriteLine("Enter number of customer or -1 to search again");
+                try
+                {
+                    customNumber = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    customNumber = -1;
+                }
+
+                }while (customNumber == -1);
+                orderer = storeCustomers.ReturnCustomer(customNumber);
                 customerOrder = new Order(orderer);
-                Console.WriteLine(storeMenu.ToString());
                 int itemNum = 0;
                 do
                 {
-                    Console.WriteLine("Choose Menu Item by Number, -1 to quit");
+                Console.Clear();
+                Console.WriteLine(storeMenu.ToString());
+                Console.WriteLine(orderer.name);
+                Console.WriteLine("Choose Menu Item by Number, -1 to quit");
                     try
                     {
                         itemNum = int.Parse(Console.ReadLine());
@@ -132,7 +153,7 @@ namespace Project0
                     Console.WriteLine(customerOrder.DisplayOrder());
                     Console.WriteLine(customerOrder.CalculateTotal() + " total");
                 } while (itemNum != -1);
-            }
+            
         }
 
         public void AddCustomerConsole()
@@ -144,8 +165,10 @@ namespace Project0
             Console.WriteLine("Enter Phone Number: ");
             string phone = Console.ReadLine();
 
-            storeCustomers.AddCustomer(name, address, phone, storeNum);
-            orderer = new Customers(name, address, phone, storeNum);
+            storeCustomers.AddCustomer(name, address, phone, storeNum+1);
+            orderer = new Customers(name, address, phone, (storeNum+1));
+            PopulateFromDB.AddCustomer(orderer);
+
 
         }
         public void AddMenuItemConsole()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace project0.logic
+namespace Project0.logic
 {
     
         public class CustomerList
@@ -35,6 +35,23 @@ namespace project0.logic
                 }
 
                 return customerString;
+            }
+
+            public string StoreCustomer(int store)
+            {
+                string customerString = "";
+                int index;
+                for (int i = 0; i < patronList.Count; i++)
+                {  
+                    if(store == patronList[i].storeNum)
+                    {
+                        index++;
+                        customerString = customerString + index + ". " + patronList[i].ToString() + "\n";
+                    }
+                }
+
+                return customerString;   
+
             }
 
 

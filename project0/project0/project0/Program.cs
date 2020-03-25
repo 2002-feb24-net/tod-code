@@ -6,7 +6,8 @@ namespace Project0
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var startConsole = new MenuConsole();
+            startConsole.IntroMenu();
         }
     }
 }

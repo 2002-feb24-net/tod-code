@@ -27,6 +27,16 @@ namespace project0
             return returnList;
         }
 
+        public static void AddCustomer(Customers patron)
+        {
+            var newcustomer = new Customer
+            {
+                Name = patron.name,
+
+            }
+
+        }
+
         public static void AddMenuItem(MenuItem addItem)
         {
             var newFood = new Food

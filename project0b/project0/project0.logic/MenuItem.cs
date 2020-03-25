@@ -1,10 +1,10 @@
 ﻿using System;
-using project0;
+using Project0;
 using System.Linq;
 
 
 
-namespace project0.logic
+namespace Project0.logic
 {
     public class MenuItem
     {
