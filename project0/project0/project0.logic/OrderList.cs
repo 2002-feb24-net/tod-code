@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Project0.logic
 {
+
+    /// <summary>
+    /// List of orders of customers
+    /// </summary>
     public class OrderList
     {
         public List<Order> receipts = new List<Order>();

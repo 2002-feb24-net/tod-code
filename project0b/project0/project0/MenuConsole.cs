@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 
+///MenuConsole is the main IO class for project0 
 namespace project0
 {
     public class MenuConsole

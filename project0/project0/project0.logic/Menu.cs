@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Project0.logic
 {
+    /// <summary>
+    /// menu of food items and a display string
+    /// </summary>
     public class Menu
     {
         public List<MenuItem> displayMenu = new List<MenuItem>();

@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Project0
 {
+    /// <summary>
+    /// Menu Consule is the main IO class for project0
+    /// </summary>
     public class MenuConsole
     {
         public Menu storeMenu { get; set; }
@@ -115,7 +118,7 @@ namespace Project0
                 Console.Clear();
                 Console.WriteLine("Search for customer");
                 string search = Console.ReadLine();
-                Console.WriteLine(storeCustomers.SearchString(search));
+                Console.WriteLine(storeCustomers.SearchString(search, storeNum));
                 Console.WriteLine("Enter number of customer or -1 to search again");
                 try
                 {

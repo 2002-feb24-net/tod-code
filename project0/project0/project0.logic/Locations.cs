@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Project0.logic
 {
+    /// <summary>
+    /// small class for restaurant locations
+    /// </summary>
     public class Locations
     {
         public string cityState { get; set; }

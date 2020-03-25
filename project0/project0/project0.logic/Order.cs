@@ -6,8 +6,13 @@ using System.Globalization;
 
 namespace Project0.logic
 {
+
+    /// <summary>
+    /// Orders from customers
+    /// </summary>
     public class Order
     {
+
         public DateTime localDate { get; set; }
         public Customers orderer { get; set; }
         public List<MenuItem> menuOrder { get; set; }

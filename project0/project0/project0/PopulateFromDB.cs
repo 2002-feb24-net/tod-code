@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace Project0
 {
+    /// <summary>
+    /// takes data from database and fills in logic classes
+    /// </summary>
     public static class PopulateFromDB
     {
 

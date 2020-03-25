@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace Project0.logic
 {
+
+    /// <summary>
+    /// Food items and the category they belong into
+    /// </summary>
     public class MenuItem
     {
         public string item { get; set; }

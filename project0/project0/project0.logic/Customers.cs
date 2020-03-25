@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Project0.logic
 {
+    /// <summary>
+    /// class of customers and what store they contacted
+    /// </summary>
     public class Customers
     {
         public string name { get; set; }

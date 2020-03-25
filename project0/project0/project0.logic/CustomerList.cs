@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Project0.logic
 {
+    /// <summary>
+    /// class is a custom list of customers
+    /// </summary>
 
     public class CustomerList
     {
@@ -53,12 +56,12 @@ namespace Project0.logic
             return customerString;
         }
 
-        public string SearchString(string search)
+        public string SearchString(string search, int storeNum)
         {
             string customerString = "";
             for (int i = 0; i < patronList.Count; i++)
             {
-                if (patronList[i].name.Contains(search))
+                if (patronList[i].name.ToLower().Contains(search.ToLower()) && patronList[i].storeNum == (storeNum + 1))
                 {
                     customerString = customerString + i + ". " + patronList[i].ToString() + "\n";
                 }
