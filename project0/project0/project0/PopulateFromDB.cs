@@ -4,7 +4,7 @@ using System.Text;
 using Project0.logic;
 using Project0.data.Entities;
 using System.Linq;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Project0
 {
@@ -29,7 +29,17 @@ namespace Project0
             }
             return returnList;
         }
+        public static void AddOrder(Order ordered)
+        {
+            var newOrder = new FoodOrder
+            {
+                //Name
+            };
+            var orderedItems = new OrderItem();
 
+           
+        }
+        
         public static void AddCustomer(Customers patron)
         {
             var newCustomer = new Customer
@@ -96,11 +106,42 @@ namespace Project0
             }
         }
 
-        public static void PopulateOrderList(OrderList popReceipts, CustomerList popCustomers, Menu popMenu)
+        public static void PopulateOrderList(OrderList popReceipts)
         {
+
             using (var context = new restaurantContext())
             {
-                //var customerList = context.
+                Customers tempCustomer;
+                var receiptList = context.FoodOrder
+                                         .Include(FoodOrder => FoodOrder.NameNavigation)
+                                         .ToList();
+                var foodDict = context.Food.ToDictionary(x => x.Name);
+                var menuOrders = context.OrderItem.ToList();
+                //List<MenuItem> receiptItems = new List<MenuItem>();
+                List<string> foodNames = new List<string>();
+                
+                for (int i = 0; i < receiptList.Count; i++)
+                {
+                    List<MenuItem> receiptItems = new List<MenuItem>();
+
+                    tempCustomer = new Customers(receiptList[i].Name, receiptList[i].NameNavigation.Address,
+                                                 receiptList[i].NameNavigation.Phone, receiptList[i].NameNavigation.Storenum);
+                       int orderkey = receiptList[i].Ordernum;
+
+                       foreach(var element in menuOrders)
+                       {
+                           if(element.Ordernum == orderkey)
+                           {
+                               foodDict.TryGetValue(element.Item, out Food foodItem); //might need a try catch in here
+                               MenuItem tempItem =
+                               new MenuItem(foodItem.Name, (double)foodItem.Price,
+                               (FoodType)Enum.Parse(typeof(FoodType), foodItem.Foodtype));
+                               receiptItems.Add(tempItem);
+                           }
+                       }
+                       popReceipts.AddOrder(tempCustomer, receiptList[i].Ordertime, receiptItems);
+                       //receiptItems.Clear();
+                }
             }
         }
     }

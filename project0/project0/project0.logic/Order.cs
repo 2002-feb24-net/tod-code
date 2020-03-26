@@ -46,6 +46,11 @@ namespace Project0.logic
             return display;
         }
 
+        public override string ToString()
+        {
+            return orderer.name + localDate + "\n" + this.DisplayOrder();
+        }
+
         public double CalculateTotal()
         {
             double total = 0;

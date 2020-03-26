@@ -12,6 +12,7 @@ namespace Project0.data.Entities
 
         public string Name { get; set; }
         public int Ordernum { get; set; }
+        public DateTime Ordertime { get; set; }
 
         public virtual Customer NameNavigation { get; set; }
         public virtual ICollection<OrderItem> OrderItem { get; set; }

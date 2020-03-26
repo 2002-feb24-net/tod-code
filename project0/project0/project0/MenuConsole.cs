@@ -28,10 +28,12 @@ namespace Project0
         {
             storeMenu = new Menu();
             storeCustomers = new CustomerList();
+            receipts = new OrderList();
             orderer = null;
             PopulateFromDB.PopulateMenu(storeMenu);
             PopulateFromDB.PopulateCustomerList(storeCustomers);
             locList = PopulateFromDB.PopulateLocations();
+            PopulateFromDB.PopulateOrderList(receipts);
 
         }
         public void IntroMenu()
@@ -78,6 +80,7 @@ namespace Project0
                 Console.WriteLine("c: Add a New Customer");
                 Console.WriteLine("p: Print Customer List for store Location");
                 Console.WriteLine("o: Order for Customer");
+                Console.WriteLine("r: Print Receipts for Store");
                 Console.WriteLine("i: Go back to Location Menu");
                 Console.WriteLine("q: Quit Program");
                 Console.WriteLine("Please Enter Command:");
@@ -107,6 +110,12 @@ namespace Project0
                 else if (command == 'o')
                 {
                     OrderforCustomer();
+                }
+                else if (command == 'r')
+                {
+
+                    Console.WriteLine(receipts.Count());
+                    Console.WriteLine(receipts.ToString());
                 }
                 else if (command == 'i')
                 {

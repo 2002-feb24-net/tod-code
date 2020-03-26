@@ -25,6 +25,7 @@ namespace Project0.data.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
+
                 optionsBuilder.UseSqlServer(secretconfig.path);
             }
         }
@@ -95,6 +96,11 @@ namespace Project0.data.Entities
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(20);
+
+                entity.Property(e => e.Ordertime)
+                    .HasColumnName("ordertime")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.NameNavigation)
                     .WithMany(p => p.FoodOrder)
