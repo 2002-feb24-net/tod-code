@@ -35,6 +35,7 @@ namespace Project0
             locList = PopulateFromDB.PopulateLocations();
             PopulateFromDB.PopulateOrderList(receipts);
 
+
         }
         public void IntroMenu()
         {
@@ -51,8 +52,8 @@ namespace Project0
                 try
                 {
                     storeNum = int.Parse(Console.ReadLine());
-                    storeNum--;
-                    if (storeNum < locList.Count && storeNum > -1)
+                    
+                    if ((storeNum-1) < locList.Count && (storeNum-1) > -1) //need -1 for compatibility with array
                         validLoc = true;
                     else
                     {
@@ -74,13 +75,14 @@ namespace Project0
             char command;
             do
             {
-                Console.WriteLine($"Welcome to Zhou Mama at {locList[storeNum].cityState}");
+                Console.WriteLine($"Welcome to Zhou Mama at {locList[(storeNum-1)].cityState}");
                 Console.WriteLine("\na: Add Menu Item");
                 Console.WriteLine("m: Display Entire Menu");
                 Console.WriteLine("c: Add a New Customer");
                 Console.WriteLine("p: Print Customer List for store Location");
                 Console.WriteLine("o: Order for Customer");
                 Console.WriteLine("r: Print Receipts for Store");
+                Console.WriteLine("s: Search for Customer Receipts");
                 Console.WriteLine("i: Go back to Location Menu");
                 Console.WriteLine("q: Quit Program");
                 Console.WriteLine("Please Enter Command:");
@@ -111,11 +113,15 @@ namespace Project0
                 {
                     OrderforCustomer();
                 }
+                else if (command == 's')
+                {
+                    SearchReceipts();
+                }
+
                 else if (command == 'r')
                 {
 
-                    Console.WriteLine(receipts.Count());
-                    Console.WriteLine(receipts.ToString());
+                    Console.WriteLine(receipts.StoreReceipts(storeNum));
                 }
                 else if (command == 'i')
                 {
@@ -125,9 +131,17 @@ namespace Project0
             } while (command != 'q');
         }
 
+        public void SearchReceipts()
+        {
+            Console.Clear();
+            Console.WriteLine("Search for customer");
+            string search = Console.ReadLine();
+            Console.WriteLine(receipts.GetCustomerReceipts(search));
+        }
+
         public void OrderforCustomer()
         {
-            Order customerOrder;
+            Order customerOrder = new Order();
             int customNumber;
             do 
             {
@@ -145,35 +159,54 @@ namespace Project0
                     customNumber = -1;
                 }
 
-                }while (customNumber == -1);
-                orderer = storeCustomers.ReturnCustomer(customNumber);
-                customerOrder = new Order(orderer);
-                int itemNum = 0;
-                do
+
+                if (customNumber > -1 && 
+                    customNumber <= storeCustomers.Count() && 
+                    storeCustomers.GetStoreNum(customNumber) == storeNum)
                 {
+                    orderer = storeCustomers.ReturnCustomer(customNumber);
+                    customerOrder = new Order(orderer);
+                }
+                else
+                {
+                    Console.WriteLine("Not a customer of this store");
+                    System.Threading.Thread.Sleep(3200);
+                    customNumber = -1;
+                }
+            } while (customNumber == -1);
+            int itemNum = 0;
+            do
+            {
                 
                 Console.WriteLine(storeMenu.ToString());
                 Console.WriteLine(orderer.name);
-                Console.WriteLine("Choose Menu Item by Number, -1 to quit");
-                    try
-                    {
-                        itemNum = int.Parse(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Not a number. Please try again");
-                    }
+                Console.WriteLine("Choose Menu Item by Number, -1 to quit, 0 to finalize");
+                try
+                {
+                    itemNum = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Not a number. Please try again");
+                }
                 Console.Clear();
                 if (itemNum > 0 && itemNum < storeMenu.Count() + 1)
-                        customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
-                    else
-                        Console.WriteLine("Not an item on the Menu");
-
-                    Console.WriteLine("Current Order: ");
-                    Console.WriteLine(customerOrder.DisplayOrder());
-                    Console.WriteLine(customerOrder.CalculateTotal() + " total");
-                } while (itemNum != -1);
-            
+                    customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
+                else if (itemNum != 0 && itemNum != -1)
+                {
+                    Console.WriteLine("Not an item on the Menu");
+                }
+                Console.WriteLine("Current Order: ");
+                Console.WriteLine(customerOrder.DisplayOrder());
+                Console.WriteLine(customerOrder.CalculateTotal() + " total");
+                
+                if(itemNum == 0 && customerOrder.Count() > 0)
+                {
+                    itemNum = -1;
+                    receipts.AddOrder(customerOrder);
+                    PopulateFromDB.AddOrder(customerOrder, receipts.Count());
+                }
+            } while (itemNum != -1);   
         }
 
         public void AddCustomerConsole()
@@ -185,8 +218,8 @@ namespace Project0
             Console.WriteLine("Enter Phone Number: ");
             string phone = Console.ReadLine();
 
-            storeCustomers.AddCustomer(name, address, phone, storeNum+1);
-            orderer = new Customers(name, address, phone, (storeNum+1));
+            storeCustomers.AddCustomer(name, address, phone, storeNum);
+            orderer = new Customers(name, address, phone, (storeNum));
             PopulateFromDB.AddCustomer(orderer);
 
 

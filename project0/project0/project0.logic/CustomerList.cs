@@ -29,13 +29,18 @@ namespace Project0.logic
             return patronList[customerIndex];
         }
 
+        public int GetStoreNum(int customerIndex)
+        {
+            return patronList[customerIndex].storeNum;
+        }
+
         public string StoreCustomerSting(int store)
         {
             int index = 0;
             string customerString = "";
             for (int i = 0; i < patronList.Count; i++)
             {
-                if (patronList[i].storeNum == store+1)
+                if (patronList[i].storeNum == store)
                 {
                     index++;
                     customerString = customerString + index + ". " + patronList[i].ToString() + "\n";
@@ -61,7 +66,7 @@ namespace Project0.logic
             string customerString = "";
             for (int i = 0; i < patronList.Count; i++)
             {
-                if (patronList[i].name.ToLower().Contains(search.ToLower()) && patronList[i].storeNum == (storeNum + 1))
+                if (patronList[i].name.ToLower().Contains(search.ToLower()) && patronList[i].storeNum == storeNum)
                 {
                     customerString = customerString + i + ". " + patronList[i].ToString() + "\n";
                 }

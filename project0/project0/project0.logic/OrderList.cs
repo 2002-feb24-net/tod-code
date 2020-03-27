@@ -28,6 +28,30 @@ namespace Project0.logic
             receipts.Add(custOrder);
             
         }
+
+        public string StoreReceipts(int store)
+        {
+            string receiptStr = "";
+            for (int i = 0; i < receipts.Count; i++)
+            {
+                if(receipts[i].orderer.storeNum == store)
+                    receiptStr = receiptStr + " " + receipts[i].ToString();
+            }
+            return receiptStr;
+        }
+
+        public string GetCustomerReceipts(string name)
+        {
+            string receiptStr = "";
+            for (int i = 0; i < receipts.Count; i++)
+            {
+                if(receipts[i].orderer.name.ToLower().Contains(name.ToLower()))
+                    receiptStr = receiptStr + " " + receipts[i].ToString();
+
+            }
+            return receiptStr;
+        }
+
         public override string ToString()
         {
             string receiptStr = "";

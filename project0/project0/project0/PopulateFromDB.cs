@@ -29,15 +29,30 @@ namespace Project0
             }
             return returnList;
         }
-        public static void AddOrder(Order ordered)
+        public static void AddOrder(Order ordered, int orderCount)
         {
             var newOrder = new FoodOrder
             {
-                //Name
+                Name = ordered.orderer.name,
+                Ordernum = orderCount,
+                Ordertime = DateTime.Now,
             };
-            var orderedItems = new OrderItem();
-
-           
+            using (var context = new restaurantContext())
+            {
+                context.FoodOrder.Add(newOrder);
+                context.SaveChanges();
+            
+                foreach(var element in ordered.menuOrder)
+                {
+                    var itemized = new OrderItem
+                    {
+                        Ordernum = orderCount,
+                        Item = element.item
+                    };
+                    context.OrderItem.Add(itemized);
+                    context.SaveChanges();
+                }
+            }
         }
         
         public static void AddCustomer(Customers patron)
@@ -117,13 +132,11 @@ namespace Project0
                                          .ToList();
                 var foodDict = context.Food.ToDictionary(x => x.Name);
                 var menuOrders = context.OrderItem.ToList();
-                //List<MenuItem> receiptItems = new List<MenuItem>();
                 List<string> foodNames = new List<string>();
                 
                 for (int i = 0; i < receiptList.Count; i++)
                 {
                     List<MenuItem> receiptItems = new List<MenuItem>();
-
                     tempCustomer = new Customers(receiptList[i].Name, receiptList[i].NameNavigation.Address,
                                                  receiptList[i].NameNavigation.Phone, receiptList[i].NameNavigation.Storenum);
                        int orderkey = receiptList[i].Ordernum;
@@ -140,7 +153,6 @@ namespace Project0
                            }
                        }
                        popReceipts.AddOrder(tempCustomer, receiptList[i].Ordertime, receiptItems);
-                       //receiptItems.Clear();
                 }
             }
         }
