@@ -11,24 +11,39 @@ namespace Project0.logic
     public class OrderList
     {
         public List<Order> receipts = new List<Order>();
-
+        /// <summary>
+        /// count
+        /// </summary>
+        /// <returns></returns>
         public int Count()
         {
             return receipts.Count;
         }
-
+        /// <summary>
+        /// adds order to list
+        /// </summary>
+        /// <param name="ordered"></param>
         public void AddOrder(Order ordered)
         {
             receipts.Add(ordered);
         }
-
+        /// <summary>
+        /// adds order based on customer data.
+        /// </summary>
+        /// <param name="orderer"></param>
+        /// <param name="localDate"></param>
+        /// <param name="menuOrder"></param>
         public void AddOrder(Customers orderer, DateTime localDate, List<MenuItem> menuOrder)
         {
             Order custOrder = new Order(orderer, localDate, menuOrder);
             receipts.Add(custOrder);
             
         }
-
+        /// <summary>
+        /// returns receipts of a single store.
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
         public string StoreReceipts(int store)
         {
             string receiptStr = "";
@@ -39,7 +54,11 @@ namespace Project0.logic
             }
             return receiptStr;
         }
-
+        /// <summary>
+        /// gets receipts based on name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public string GetCustomerReceipts(string name)
         {
             string receiptStr = "";
@@ -51,7 +70,10 @@ namespace Project0.logic
             }
             return receiptStr;
         }
-
+        /// <summary>
+        /// to string method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string receiptStr = "";

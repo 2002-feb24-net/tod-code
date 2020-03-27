@@ -62,7 +62,7 @@ namespace Project0.logic
         {
             string display = "";
             for (int i = 0; i < menuOrder.Count; i++)
-                display = display + (i + 1) + ". " + menuOrder[i].price + " - " + menuOrder[i].item + "\n";
+                display = display + (i + 1) + ". $" + menuOrder[i].price + " - " + menuOrder[i].item + "\n";
             return display;
         }
 

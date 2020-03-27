@@ -11,7 +11,11 @@ namespace Project0.logic
     {
         public string cityState { get; set; }
         public int locNum { get; set; }
-
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="cityState"></param>
+        /// <param name="locNum"></param>
         public Locations(string cityState, int locNum)
         {
             this.cityState = cityState;

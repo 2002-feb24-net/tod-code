@@ -24,18 +24,19 @@ namespace Project0
 
         public List<Locations> locList { get; set; }
 
+        public StockList storeInventory { get; set; }
+
         public MenuConsole()
         {
             storeMenu = new Menu();
             storeCustomers = new CustomerList();
             receipts = new OrderList();
             orderer = null;
+            storeInventory = new StockList();
             PopulateFromDB.PopulateMenu(storeMenu);
             PopulateFromDB.PopulateCustomerList(storeCustomers);
             locList = PopulateFromDB.PopulateLocations();
             PopulateFromDB.PopulateOrderList(receipts);
-
-
         }
         public void IntroMenu()
         {
@@ -71,7 +72,8 @@ namespace Project0
         }
         public void MainMenu()
         {
-
+            storeInventory.Clear();
+            PopulateFromDB.PopulateInventory(storeNum, storeInventory);
             char command;
             do
             {
@@ -83,6 +85,8 @@ namespace Project0
                 Console.WriteLine("o: Order for Customer");
                 Console.WriteLine("r: Print Receipts for Store");
                 Console.WriteLine("s: Search for Customer Receipts");
+                //Console.WriteLine("l: Restock Larder");
+                Console.WriteLine("n: Check Inventory");
                 Console.WriteLine("i: Go back to Location Menu");
                 Console.WriteLine("q: Quit Program");
                 Console.WriteLine("Please Enter Command:");
@@ -96,7 +100,9 @@ namespace Project0
                     command = 'f';
                 }
                 if (command == 'a')
+                {
                     AddMenuItemConsole();
+                }
                 else if (command == 'm')
                 {
                     Console.WriteLine(storeMenu.ToString());
@@ -128,9 +134,46 @@ namespace Project0
                     IntroMenu();
                     break;
                 }
+                else if (command == 'n')
+                {
+                    PrintInventory();
+                }
+                /*else if (command == 'l')
+                {
+                    Restock();
+                }*/
             } while (command != 'q');
         }
+/*
+        public void Restock()
+        {
+            PrintInventory();
+            Console.WriteLine("What Meat would you like to restock?");
+            string cat = Console.ReadLine();
+            Console.WriteLine("Add quantity");
+            try
+            {
+                double quant = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Not a valid quantity");
+            }
+        }*/
 
+        /// <summary>
+        /// Prints inventory of restaurant
+        /// </summary>
+        public void PrintInventory()
+        {
+            Console.Clear();            
+            Console.WriteLine(storeInventory.ToString());
+
+        }
+
+        /// <summary>
+        /// Searchs customer orders
+        /// </summary>
         public void SearchReceipts()
         {
             Console.Clear();
@@ -138,6 +181,9 @@ namespace Project0
             string search = Console.ReadLine();
             Console.WriteLine(receipts.GetCustomerReceipts(search));
         }
+        /// <summary>
+        /// makes customer order, checks larder
+        /// </summary>
 
         public void OrderforCustomer()
         {
@@ -191,24 +237,38 @@ namespace Project0
                 }
                 Console.Clear();
                 if (itemNum > 0 && itemNum < storeMenu.Count() + 1)
-                    customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
+                {
+                    if (storeInventory.Subtract(storeMenu.GetItemFromMenu(itemNum - 1)))
+                        customerOrder.AddItem(storeMenu.GetItemFromMenu(itemNum - 1));
+                    else
+                    {
+                        Console.WriteLine("Sorry. We are out of enough to complete your order");
+                        System.Threading.Thread.Sleep(3200);
+                        itemNum = -1;
+                        
+                    }
+                }
                 else if (itemNum != 0 && itemNum != -1)
                 {
                     Console.WriteLine("Not an item on the Menu");
                 }
                 Console.WriteLine("Current Order: ");
                 Console.WriteLine(customerOrder.DisplayOrder());
-                Console.WriteLine(customerOrder.CalculateTotal() + " total");
+                Console.WriteLine("$" + customerOrder.CalculateTotal() + " total");
                 
                 if(itemNum == 0 && customerOrder.Count() > 0)
                 {
                     itemNum = -1;
                     receipts.AddOrder(customerOrder);
+                    storeInventory.FinalizePurchase();
+                    PopulateFromDB.ModifyInventory(storeNum, storeInventory);
                     PopulateFromDB.AddOrder(customerOrder, receipts.Count());
                 }
             } while (itemNum != -1);   
         }
-
+        /// <summary>
+        /// Adds customer to store database
+        /// </summary>
         public void AddCustomerConsole()
         {
             Console.WriteLine("Enter Customer Name: ");
@@ -224,6 +284,9 @@ namespace Project0
 
 
         }
+        /// <summary>
+        /// adds a new menu item
+        /// </summary>
         public void AddMenuItemConsole()
         {
             Console.WriteLine("Enter name of food:");

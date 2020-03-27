@@ -14,3 +14,16 @@ namespace Project0
         }
     }
 }
+/*
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Project0.data.Entities
+{
+    public static class secretconfig
+    {
+        internal static string path = "Server=tcp:training-tshjones.database.windows.net,1433;Initial Catalog=restaurant;Persist Security Info=False;User ID=Gwyrddu;Password=****;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    }
+}
+*/

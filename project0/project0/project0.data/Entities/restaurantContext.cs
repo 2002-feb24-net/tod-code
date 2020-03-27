@@ -18,6 +18,7 @@ namespace Project0.data.Entities
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Food> Food { get; set; }
         public virtual DbSet<FoodOrder> FoodOrder { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<OrderItem> OrderItem { get; set; }
 
@@ -106,6 +107,30 @@ namespace Project0.data.Entities
                     .WithMany(p => p.FoodOrder)
                     .HasForeignKey(d => d.Name)
                     .HasConstraintName("FK__foodOrder__name__4D94879B");
+            });
+
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.HasKey(e => new { e.Storenum, e.Item })
+                    .HasName("PK__inventor__EF27FEF09F5452C0");
+
+                entity.ToTable("inventory", "rest");
+
+                entity.Property(e => e.Storenum).HasColumnName("storenum");
+
+                entity.Property(e => e.Item)
+                    .HasColumnName("item")
+                    .HasMaxLength(15);
+
+                entity.Property(e => e.Quantity)
+                    .HasColumnName("quantity")
+                    .HasColumnType("decimal(12, 2)");
+
+                entity.HasOne(d => d.StorenumNavigation)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.Storenum)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__inventory__store__6383C8BA");
             });
 
             modelBuilder.Entity<Location>(entity =>

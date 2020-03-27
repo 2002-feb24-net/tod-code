@@ -8,11 +8,13 @@ namespace Project0.data.Entities
         public Location()
         {
             Customer = new HashSet<Customer>();
+            Inventory = new HashSet<Inventory>();
         }
 
         public string Name { get; set; }
         public int Storenum { get; set; }
 
         public virtual ICollection<Customer> Customer { get; set; }
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

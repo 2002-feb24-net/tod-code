@@ -11,19 +11,22 @@ namespace Project0.logic
     public class Menu
     {
         public List<MenuItem> displayMenu = new List<MenuItem>();
-
+        /// <summary>
+        /// adds items to menu list
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cost"></param>
+        /// <param name="cat"></param>
         public void AddItem(string name, double cost, FoodType cat)
         {
             MenuItem entry = new MenuItem(name, cost, cat);
             displayMenu.Add(entry);
         }
 
-        /*public void Sort()
-        {
-            var sortedList = displayMenu
-        .OrderByDescending(x => (int)(x.category))
-        .ToList();
-        }*/
+       /// <summary>
+       /// to string override for menu
+       /// </summary>
+       /// <returns></returns>
 
         public override string ToString()
         {
@@ -99,12 +102,19 @@ namespace Project0.logic
             displayMenu = orderedMenu;
             return menuString;
         }
-
+        /// <summary>
+        /// grabs a menu item
+        /// </summary>
+        /// <param name="itemNum"></param>
+        /// <returns></returns>
         public MenuItem GetItemFromMenu(int itemNum)
         {
             return displayMenu[itemNum];
         }
-
+        /// <summary>
+        /// returns item count
+        /// </summary>
+        /// <returns></returns>
         public int Count()
         {
             return displayMenu.Count;

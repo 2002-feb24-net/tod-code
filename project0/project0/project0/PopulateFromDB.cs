@@ -13,7 +13,74 @@ namespace Project0
     /// </summary>
     public static class PopulateFromDB
     {
+        /*
+        public static void ModifyInventory(int storeNum, string cat, double quantity)
+        {
+            if (cat != "beef" && cat != "chicken" && cat != "pork")
+                return;
 
+            using (var context = new restaurantContext())
+            {
+                var stockList = context.Inventory.ToList();
+                for (int i = 0; i < stockList.Count; i++)
+                {
+                    if (storeNum == stockList[i].Storenum && cat == stockList[i].Item)
+                    {
+                        stockList[i].Quantity = (decimal)quantity;
+                    }
+                }
+                context.SaveChanges();
+            }
+        }*/
+
+            /// <summary>
+            /// modifies amount of supplies in stock based on purchases
+            /// </summary>
+            /// <param name="storeNum"></param>
+            /// <param name="currentStock"></param>
+        public static void ModifyInventory(int storeNum, StockList currentStock)
+        {
+            using (var context = new restaurantContext())
+            {
+                var stockList = context.Inventory.ToList();
+                for (int i = 0; i < stockList.Count; i++)
+                {
+                    if(storeNum == stockList[i].Storenum)
+                    {
+                        double quantity;
+                        FoodType food = (FoodType)Enum.Parse(typeof(FoodType), stockList[i].Item);
+                        if (currentStock.TryKey(food, out quantity))
+                            stockList[i].Quantity = (decimal) quantity;
+                    }    
+                }
+                context.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// Gets inventory from database
+        /// </summary>
+        /// <param name="storenum"></param>
+        /// <param name="storeInventory"></param>
+        public static void PopulateInventory(int storenum, StockList storeInventory)
+        {
+            using (var context = new restaurantContext())
+            {
+                var stockList = context.Inventory.ToList();
+                for (int i = 0; i < stockList.Count; i++)
+                {
+                    if (storenum == stockList[i].Storenum)
+                    {
+                        FoodType category = (FoodType)Enum.Parse(typeof(FoodType), stockList[i].Item);
+                        storeInventory.Add(category, (double)stockList[i].Quantity);
+
+                    }
+                }
+            };
+        }
+        /// <summary>
+        /// Gets locations from database
+        /// </summary>
+        /// <returns></returns>
         public static List<Locations> PopulateLocations()
         {
             var returnList = new List<Locations>();
@@ -29,6 +96,11 @@ namespace Project0
             }
             return returnList;
         }
+        /// <summary>
+        /// adds order to database
+        /// </summary>
+        /// <param name="ordered"></param>
+        /// <param name="orderCount"></param>
         public static void AddOrder(Order ordered, int orderCount)
         {
             var newOrder = new FoodOrder
@@ -54,7 +126,10 @@ namespace Project0
                 }
             }
         }
-        
+        /// <summary>
+        /// Adds customer to database
+        /// </summary>
+        /// <param name="patron"></param>
         public static void AddCustomer(Customers patron)
         {
             var newCustomer = new Customer
@@ -71,7 +146,10 @@ namespace Project0
             }
 
         }
-
+        /// <summary>
+        /// adds menu item to database
+        /// </summary>
+        /// <param name="addItem"></param>
         public static void AddMenuItem(MenuItem addItem)
         {
             var newFood = new Food
@@ -88,6 +166,11 @@ namespace Project0
             }
 
         }
+        /// <summary>
+        /// gets menu from database
+        /// </summary>
+        /// <param name="popMenu"></param>
+        /// <returns></returns>
         public static bool PopulateMenu(Menu popMenu)
         {
             using (var context = new restaurantContext())
@@ -109,7 +192,10 @@ namespace Project0
             }
 
         }
-
+        /// <summary>
+        /// gets list of customers from database
+        /// </summary>
+        /// <param name="popCustomer"></param>
         public static void PopulateCustomerList(CustomerList popCustomer)
         {
             using (var context = new restaurantContext())
@@ -120,7 +206,10 @@ namespace Project0
                         customList[i].Phone, customList[i].Storenum);
             }
         }
-
+        /// <summary>
+        /// gets list of orders from database
+        /// </summary>
+        /// <param name="popReceipts"></param>
         public static void PopulateOrderList(OrderList popReceipts)
         {
 
