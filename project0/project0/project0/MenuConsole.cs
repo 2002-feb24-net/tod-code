@@ -281,8 +281,10 @@ namespace Project0
         /// </summary>
         public void AddCustomerConsole()
         {
+
             Console.WriteLine("Enter Customer Name: ");
             string name = Console.ReadLine();
+            name = name.Length > 20 ? name : name.Substring(0, 20);
             Console.WriteLine("Enter address: ");
             string address = Console.ReadLine();
             Console.WriteLine("Enter Phone Number: ");
