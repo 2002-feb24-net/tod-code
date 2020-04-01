@@ -281,13 +281,16 @@ namespace Project0
         /// </summary>
         public void AddCustomerConsole()
         {
+            const int strlength = 20;
             Console.WriteLine("Enter Customer Name: ");
             string name = Console.ReadLine();
+            name = name.Length > strlength ? name : name.Substring(0, strlength);
             Console.WriteLine("Enter address: ");
             string address = Console.ReadLine();
+            address = address.Length > strlength ? address : address.Substring(0, strlength);
             Console.WriteLine("Enter Phone Number: ");
             string phone = Console.ReadLine();
-
+            address = address.Length > strlength ? address : address.Substring(0, strlength);
             storeCustomers.AddCustomer(name, address, phone, storeNum);
             orderer = new Customers(name, address, phone, (storeNum));
             PopulateFromDB.AddCustomer(orderer);
