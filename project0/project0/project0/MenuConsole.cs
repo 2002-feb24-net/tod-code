@@ -26,6 +26,9 @@ namespace Project0
 
         public StockList storeInventory { get; set; }
 
+        /// <summary>
+        /// constructor, pulls info from database
+        /// </summary>
         public MenuConsole()
         {
             storeMenu = new Menu();
@@ -38,6 +41,10 @@ namespace Project0
             locList = PopulateFromDB.PopulateLocations();
             PopulateFromDB.PopulateOrderList(receipts);
         }
+
+        /// <summary>
+        /// introduction and location menu for console
+        /// </summary>
         public void IntroMenu()
         {
             
@@ -70,6 +77,9 @@ namespace Project0
             } while (!validLoc);
             MainMenu();
         }
+        /// <summary>
+        /// Main Menu for console with loop
+        /// </summary>
         public void MainMenu()
         {
             storeInventory.Clear();

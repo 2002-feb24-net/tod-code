@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Project0.data.Entities
 {
+
+    /// <summary>
+    /// food communicates with food table
+    /// </summary>
     public partial class Food
     {
         public Food()

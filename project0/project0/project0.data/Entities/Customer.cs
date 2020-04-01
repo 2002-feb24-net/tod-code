@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Project0.data.Entities
 {
+    /// <summary>
+    /// customer communicates with customer table
+    /// </summary>
     public partial class Customer
     {
         public Customer()

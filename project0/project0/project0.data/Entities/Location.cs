@@ -5,6 +5,9 @@ namespace Project0.data.Entities
 {
     public partial class Location
     {
+        /// <summary>
+        /// communicates with location menu
+        /// </summary>
         public Location()
         {
             Customer = new HashSet<Customer>();

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Project0.data.Entities
 {
+    /// <summary>
+    /// communicates with food order table
+    /// </summary>
     public partial class FoodOrder
     {
         public FoodOrder()

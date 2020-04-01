@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Project0.data.Entities
 {
+
+    /// <summary>
+    /// ef core main class for sql management
+    /// </summary>
     public partial class restaurantContext : DbContext
     {
         public restaurantContext()
